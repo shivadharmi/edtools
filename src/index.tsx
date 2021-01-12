@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import FlashCard from './flashCard-app';
+import FlashCard from "./flashCard-app";
 
 import "./excalidraw-app/pwa";
 import "./excalidraw-app/sentry";

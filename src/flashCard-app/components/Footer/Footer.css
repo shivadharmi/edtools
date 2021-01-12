@@ -1,31 +1,31 @@
-.footer{
-    position: relative;
-    height: 12vh;
-    background-color: wheat;
-    color: black;
+.footer {
+  position: relative;
+  height: 12vh;
+  background-color: wheat;
+  color: black;
 }
 
-.credits{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    font-weight: bold;
+.credits {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
 }
 
-.credits p{
-    width: 100%;
+.credits p {
+  width: 100%;
 }
 
-.credits p span{
-    color: #0373d4;
+.credits p span {
+  color: #0373d4;
 }
 
-@media(max-width:768px){
-    .credits{
-        width: 78%;
-    }
-    .credits p{
-        font-size: x-small;
-    }
+@media (max-width: 768px) {
+  .credits {
+    width: 78%;
+  }
+  .credits p {
+    font-size: x-small;
+  }
 }

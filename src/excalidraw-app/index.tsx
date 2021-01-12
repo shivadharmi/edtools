@@ -83,7 +83,7 @@ const shouldForceLoadScene = (
     collabForceLoadFlag = localStorage?.getItem(
       STORAGE_KEYS.LOCAL_STORAGE_KEY_COLLAB_FORCE_FLAG,
     );
-  } catch { }
+  } catch {}
 
   if (collabForceLoadFlag) {
     try {
@@ -96,7 +96,7 @@ const shouldForceLoadScene = (
       if (previousRoom === roomId && Date.now() - timestamp < 15000) {
         return true;
       }
-    } catch { }
+    } catch {}
   }
   return false;
 };
@@ -197,23 +197,23 @@ function ExcalidrawWrapper(props: { collab: CollabAPI }) {
   const currentLangCode = languageDetector.detect() || defaultLang.code;
   const [langCode, setLangCode] = useState(currentLangCode);
 
-  useEffect(()=>{
-    if(window.innerWidth < 768){
+  useEffect(() => {
+    if (window.innerWidth < 768) {
       sizeFactorW = 0.9;
-    }else{
+    } else {
       sizeFactorW = 0.97;
     }
     setDimensions({
-      width:window.innerWidth *sizeFactorW,
-      height:window.innerHeight
-    })
-  },[]);
+      width: window.innerWidth * sizeFactorW,
+      height: window.innerHeight,
+    });
+  }, []);
 
   useLayoutEffect(() => {
     const onResizeSZ = () => {
-      if(window.innerWidth < 768){
+      if (window.innerWidth < 768) {
         sizeFactorW = 0.9;
-      }else{
+      } else {
         sizeFactorW = 0.97;
       }
       setDimensions({
@@ -228,16 +228,16 @@ function ExcalidrawWrapper(props: { collab: CollabAPI }) {
   }, []);
 
   useLayoutEffect(() => {
-    if(window.innerWidth < 768){
+    if (window.innerWidth < 768) {
       console.log("Hello");
       sizeFactorW = 0.9;
-    }else{
+    } else {
       sizeFactorW = 0.97;
     }
     const onResize = () => {
       setDimensions({
         width: window.innerWidth * sizeFactorW,
-        height: window.innerHeight ,
+        height: window.innerHeight,
       });
     };
 
