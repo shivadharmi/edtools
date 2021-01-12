@@ -1,0 +1,15 @@
+.sideNavBar {
+    background-color: wheat;
+    padding:0px 2.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5vw;
+    height: 100vh;
+}
+
+@media(max-width:768px){
+    .sideNavBar{
+        width:10%;
+    }
+}

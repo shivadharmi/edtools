@@ -1,0 +1,41 @@
+.sideDrawer_main{
+    position: fixed;
+    top:0;
+    right:0;
+    width: 30%;
+    z-index: 100;
+    height: 100vh;
+    background-color: wheat;
+    box-shadow: -2px 0px 2px #000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+}
+
+.sideDrawer_main-visible{
+    transform: translateX(0);
+}
+
+.nav_items{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.nav_item{
+    padding:5px 3px;
+}
+.nav_item a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.nav_item a:hover{
+    color: rgb(3, 115, 212);
+}
+
+@media(max-width:768px){
+    .sideDrawer_main{
+        width: 70%;
+    }
+}
