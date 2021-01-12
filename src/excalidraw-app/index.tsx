@@ -188,33 +188,28 @@ const initializeScene = async (opts: {
 function ExcalidrawWrapper(props: { collab: CollabAPI }) {
   // dimensions
   // ---------------------------------------------------------------------------
-  let sizeFactorW = 0.97;
   const [dimensions, setDimensions] = useState({
-    width: window.innerWidth * sizeFactorW,
+    width: window.innerWidth * 0.97,
     height: window.innerHeight,
   });
   const [errorMessage, setErrorMessage] = useState("");
   const currentLangCode = languageDetector.detect() || defaultLang.code;
   const [langCode, setLangCode] = useState(currentLangCode);
-
   useEffect(() => {
+    let sizeFactorW = 0.97;
     if (window.innerWidth < 768) {
       sizeFactorW = 0.9;
-    } else {
-      sizeFactorW = 0.97;
     }
     setDimensions({
       width: window.innerWidth * sizeFactorW,
       height: window.innerHeight,
     });
   }, []);
-
   useLayoutEffect(() => {
+    let sizeFactorW = 0.97;
     const onResizeSZ = () => {
       if (window.innerWidth < 768) {
         sizeFactorW = 0.9;
-      } else {
-        sizeFactorW = 0.97;
       }
       setDimensions({
         width: window.innerWidth * sizeFactorW,
@@ -225,25 +220,6 @@ function ExcalidrawWrapper(props: { collab: CollabAPI }) {
     window.addEventListener("resize", onResizeSZ);
 
     return () => window.removeEventListener("resize", onResizeSZ);
-  }, []);
-
-  useLayoutEffect(() => {
-    if (window.innerWidth < 768) {
-      console.log("Hello");
-      sizeFactorW = 0.9;
-    } else {
-      sizeFactorW = 0.97;
-    }
-    const onResize = () => {
-      setDimensions({
-        width: window.innerWidth * sizeFactorW,
-        height: window.innerHeight,
-      });
-    };
-
-    window.addEventListener("resize", onResize);
-
-    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   // initial state
