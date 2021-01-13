@@ -18,14 +18,14 @@ const SideDrawer: React.FC<Props> = ({ onClick }) => {
         <ul className="nav_items">
             <li className="nav_item">
                 <Link to="/">
-                    {t("Educational tools built with Reactjs and Typescript.")}
+                Home
                 </Link>
             </li>
             <li className="nav_item">
-                <Link to="/excalidraw">{t("Excalidraw FlashCard")}</Link>
+                <Link to="/excalidraw">Excalidraw FlashCard</Link>
             </li>
             <li className="nav_item">
-                <Link to="/cbf">{t("Create Basic FlashCard")}</Link>
+                <Link to="/cbf">Create Basic FlashCard</Link>
             </li>
         </ul>
     </nav>);

@@ -1,5 +1,4 @@
 import React from "react";
-import { t } from "../../../i18n";
 import "./Footer.css";
 
 const Footer = () => {
@@ -7,7 +6,7 @@ const Footer = () => {
     <div className="footer">
       <div className="credits">
         <p>
-          {t("Made with ❤️ by")} <span>{t("Siva Sankar Reddy Bogala")}</span>
+        Made with ❤️ by <span>Siva Sankar Reddy Bogala</span>
         </p>
       </div>
     </div>

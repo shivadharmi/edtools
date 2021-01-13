@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ExcalidrawApp from "../excalidraw-app";
 import "./assets/styles/main.css";
@@ -16,6 +16,14 @@ const onClick = () => {
 };
 
 const FlashCard = () => {
+  useEffect(() => {
+    const svgUrl = window.localStorage.getItem("fc")!;
+    const img = document.getElementById("fc") as HTMLImageElement;
+    if (img) {
+      img.src = svgUrl;
+    }
+
+  }, [])
   return (
     <Router>
       <Switch>
@@ -27,6 +35,11 @@ const FlashCard = () => {
             <ExcalidrawApp />
             <SideNavBar onClick={onClick} />
             <SideDrawer onClick={onClick} />
+          </div>
+        </Route>
+        <Route path="/preview" exact>
+          <div>
+            <img id="fc" src="" />
           </div>
         </Route>
       </Switch>

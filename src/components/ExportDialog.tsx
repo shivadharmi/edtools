@@ -158,9 +158,10 @@ const ExportModal = ({
               <ToolButton
                 type="button"
                 icon={link}
-                title={t("buttons.getShareableLink")}
-                aria-label={t("buttons.getShareableLink")}
-                onClick={() => onExportToBackend(exportedElements)}
+                title={"Export To FlashCard"}
+                aria-label={"Export To FlashCard"}
+                // onClick={() => onExportToBackend(exportedElements)}
+                onClick={() =>{}}
               />
             )}
           </Stack.Row>

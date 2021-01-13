@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./TopNavbar.css";
-import {t} from '../../../i18n';
 
 interface Props {
     onClick: () => void;
@@ -18,13 +17,13 @@ const TopNavbar: React.FC<Props> = ({ onClick }) => {
                 <div className="spacer"></div>
                 <ul className="navbar_items">
                     <li className="nav_item">
-                        <Link to="/">{t("Educational tools built with Reactjs and Typescript.")}</Link>
+                        <Link to="/">Home</Link>
                     </li>
                     <li className="nav_item">
-                        <Link to="/excalidraw">{t("Excalidraw FlashCard")}</Link>
+                        <Link to="/excalidraw">Excalidraw FlashCard</Link>
                     </li>
                     <li className="nav_item">
-                        <Link to="/cbf">{t("Create Basic FlashCard")}</Link>
+                        <Link to="/cbf">Create Basic FlashCard</Link>
                     </li>
                 </ul>
                 <div

@@ -4,6 +4,7 @@ import {
   copyTextToSystemClipboard,
 } from "../clipboard";
 import { NonDeletedExcalidrawElement } from "../element/types";
+import { b64toBlob, blobToString } from "../flashCard-app/utils/file";
 import { t } from "../i18n";
 import { exportToCanvas, exportToSvg } from "../scene/export";
 import { ExportType } from "../scene/types";
@@ -55,10 +56,12 @@ export const exportCanvas = async (
           : undefined,
     });
     if (type === "svg") {
-      await fileSave(new Blob([tempSvg.outerHTML], { type: "image/svg+xml" }), {
-        fileName: `${name}.svg`,
-        extensions: [".svg"],
-      });
+      const blob = new Blob([tempSvg.outerHTML], { type: "image/svg+xml" });
+      await blobToString(blob);
+            // await fileSave(new Blob([tempSvg.outerHTML], { type: "image/svg+xml" }), {
+      //   fileName: `${name}.svg`,
+      //   extensions: [".svg"],
+      // });
       return;
     } else if (type === "clipboard-svg") {
       copyTextToSystemClipboard(tempSvg.outerHTML);
