@@ -1,7 +1,5 @@
 /// <reference types="aws-sdk" />
 import AWS from "aws-sdk";
-import keys from "../keys/index";
-
 export const uploadToS3 = (
   data: string | Blob,
   contentType: string,
@@ -9,7 +7,10 @@ export const uploadToS3 = (
 ) => {
   AWS.config.update({
     region: "ap-south-1",
-    credentials: keys.awsKeys,
+    credentials: {
+        accessKeyId: process.env.REACT_APP_EDTOOLS_AWS_ACCESS_KEY_ID as string,
+        secretAccessKey: process.env.REACT_APP_EDTOOLS_AWS_SECRET_ACCESS_KEY as string,
+      } ,
   });
 
   const s3Bucket = new AWS.S3({ params: { Bucket: "excalifcbuck" } });
