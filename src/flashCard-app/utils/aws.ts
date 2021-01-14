@@ -6,17 +6,17 @@ export const uploadToS3 = (
     fileName: string,
 ) => {
     AWS.config.update({
-        apiVersion: "2006-03-01",
-        signatureVersion:"V4",
         region: "ap-south-1",
         credentials: {
             accessKeyId: process.env.REACT_APP_EDTOOLS_AWS_ACCESS_KEY_ID as string,
-            secretAccessKey: process.env.REACT_APP_EDTOOLS_AWS_SECRET_ACCESS_KEY as string,
+            secretAccessKey: process.env.REACT_APP_EDTOOLS_AWS_SECRET_ACCESS_KEY as string
         },
     });
 
-    console.log(process.env.REACT_APP_EDTOOLS_AWS_ACCESS_KEY_ID, process.env.REACT_APP_EDTOOLS_AWS_SECRET_ACCESS_KEY);
-    const s3Bucket = new AWS.S3({ params: { Bucket: "excalifcbuck" } });
+    const s3Bucket = new AWS.S3({
+        apiVersion: "2006-03-01",
+        params: { Bucket: "excalifcbuck" }
+    });
     let buf;
     let contentEncoding;
     if (typeof data === "string") {
