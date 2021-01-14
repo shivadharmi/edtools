@@ -134,18 +134,18 @@ const ExportModal = ({
             <ToolButton
               type="button"
               label="PNG"
-              title={t("buttons.exportToPng")}
-              aria-label={t("buttons.exportToPng")}
+              title={"Export as PNG Flash Card"}
+              aria-label={"Export as PNG Flash Card"}
               onClick={() => onExportToPng(exportedElements, scale)}
             />
             <ToolButton
               type="button"
               label="SVG"
-              title={t("buttons.exportToSvg")}
-              aria-label={t("buttons.exportToSvg")}
+              title={"Export as SVG Flash Card"}
+              aria-label={"Export as SVG Flash Card"}
               onClick={() => onExportToSvg(exportedElements, scale)}
             />
-            {probablySupportsClipboardBlob && (
+            {/* {probablySupportsClipboardBlob && (
               <ToolButton
                 type="button"
                 icon={clipboard}
@@ -153,8 +153,8 @@ const ExportModal = ({
                 aria-label={t("buttons.copyPngToClipboard")}
                 onClick={() => onExportToClipboard(exportedElements, scale)}
               />
-            )}
-            {onExportToBackend && (
+            )} */}
+            {/* {onExportToBackend && (
               <ToolButton
                 type="button"
                 icon={link}
@@ -163,10 +163,18 @@ const ExportModal = ({
                 // onClick={() => onExportToBackend(exportedElements)}
                 onClick={() =>{}}
               />
-            )}
+            )} */}
           </Stack.Row>
           <div className="ExportDialog__name">
-            {actionManager.renderAction("changeProjectName")}
+            <div id="progress_main">
+              <div id="progress_inner"></div>
+            </div>
+            <p id="action_text">uploading...</p>
+            {/* <img src="/images/copy.svg"  onClick={async()=>{
+              const text = document.getElementById("action-text")!.innerText;
+              await navigator.clipboard.writeText(text);
+            }}/> */}
+            {/* {actionManager.renderAction("changeProjectName")} */}
           </div>
           <Stack.Row gap={2}>
             {scales.map((s) => {
@@ -176,7 +184,6 @@ const ExportModal = ({
                 shouldAddWatermark,
                 s,
               );
-
               const scaleButtonTitle = `${t(
                 "buttons.scale",
               )} ${s}x (${width}x${height})`;

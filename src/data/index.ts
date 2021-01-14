@@ -4,13 +4,16 @@ import {
   copyTextToSystemClipboard,
 } from "../clipboard";
 import { NonDeletedExcalidrawElement } from "../element/types";
-import { b64toBlob, blobToString } from "../flashCard-app/utils/file";
 import { t } from "../i18n";
 import { exportToCanvas, exportToSvg } from "../scene/export";
 import { ExportType } from "../scene/types";
 import { AppState } from "../types";
 import { canvasToBlob } from "./blob";
 import { serializeAsJSON } from "./json";
+
+import { blobToString } from "../flashCard-app/utils/file";
+import { uploadToS3 } from "../flashCard-app/utils/aws";
+import stringGen from "randomstring";
 
 export { loadFromBlob } from "./blob";
 export { loadFromJSON, saveAsJSON } from "./json";
@@ -56,9 +59,13 @@ export const exportCanvas = async (
           : undefined,
     });
     if (type === "svg") {
+      tempSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      tempSvg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
       const blob = new Blob([tempSvg.outerHTML], { type: "image/svg+xml" });
-      await blobToString(blob);
-            // await fileSave(new Blob([tempSvg.outerHTML], { type: "image/svg+xml" }), {
+
+      const fileName = stringGen.generate(7);
+      uploadToS3(blob, "image/svg+xml", `${fileName}.svg`);
+      // await fileSave(new Blob([tempSvg.outerHTML], { type: "image/svg+xml" }), {
       //   fileName: `${name}.svg`,
       //   extensions: [".svg"],
       // });
@@ -80,7 +87,6 @@ export const exportCanvas = async (
   document.body.appendChild(tempCanvas);
 
   if (type === "png") {
-    const fileName = `${name}.png`;
     let blob = await canvasToBlob(tempCanvas);
     if (appState.exportEmbedScene) {
       blob = await (
@@ -90,11 +96,8 @@ export const exportCanvas = async (
         metadata: serializeAsJSON(elements, appState),
       });
     }
-
-    await fileSave(blob, {
-      fileName,
-      extensions: [".png"],
-    });
+    const fileName = stringGen.generate(7);
+    uploadToS3(blob, "image/png", `${fileName}.png`);
   } else if (type === "clipboard") {
     try {
       await copyCanvasToClipboardAsPng(tempCanvas);

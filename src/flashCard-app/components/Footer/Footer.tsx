@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer">
       <div className="credits">
         <p>
-        Made with ❤️ by <span>Siva Sankar Reddy Bogala</span>
+          Made with ❤️ by <span>Siva Sankar Reddy Bogala</span>
         </p>
       </div>
     </div>

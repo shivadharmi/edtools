@@ -13,6 +13,7 @@
 build
 dist
 firebase
+/src/flashCard-app/keys/dev.ts
 logs
 node_modules
 npm-debug.log*

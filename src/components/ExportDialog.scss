@@ -26,11 +26,29 @@
     grid-gap: calc(var(--space-factor) * 2);
     align-items: top;
     justify-content: space-between;
+    text-align: center;
   }
 
   .ExportDialog__name {
     grid-column: project-name;
-    margin: auto;
+    margin: 0 auto;
+
+    #progress_main {
+      width: 200px;
+    }
+
+    #progress_inner {
+      display: none;
+      width: 1%;
+      height: 10px;
+      background-color: #4caf50;
+    }
+
+    #action_text {
+      display: none;
+      margin: 0;
+      padding: 5px 0;
+    }
 
     .TextInput {
       height: calc(1rem - 3px);

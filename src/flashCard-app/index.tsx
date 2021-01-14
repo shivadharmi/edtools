@@ -17,13 +17,12 @@ const onClick = () => {
 
 const FlashCard = () => {
   useEffect(() => {
-    const svgUrl = window.localStorage.getItem("fc")!;
+    const svgUrl = window.localStorage.getItem("link")!;
     const img = document.getElementById("fc") as HTMLImageElement;
     if (img) {
       img.src = svgUrl;
     }
-
-  }, [])
+  }, []);
   return (
     <Router>
       <Switch>
