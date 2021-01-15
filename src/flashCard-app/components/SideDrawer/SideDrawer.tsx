@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { t } from "../../../i18n";
 import "./SideDrawer.css";
+import { isAuthenticated } from "../../utils/auth";
+import Logout from "../Form/Logout";
 interface Props {
   onClick: () => void;
 }
@@ -9,9 +10,15 @@ interface Props {
 const SideDrawer: React.FC<Props> = ({ onClick }) => {
   return (
     <nav id="sideDrawer_main" className="sideDrawer_main">
-      <div style={{ margin: "2px", cursor: "pointer" }} onClick={onClick}>
+      <div style={{ margin: "2px" }}>
         <img
-          style={{ width: "22px", height: "18px", padding: "3px" }}
+          onClick={onClick}
+          style={{
+            width: "22px",
+            height: "18px",
+            padding: "3px",
+            cursor: "pointer",
+          }}
           src={"/images/close.svg"}
           alt="Hamberger menu"
         />
@@ -24,7 +31,7 @@ const SideDrawer: React.FC<Props> = ({ onClick }) => {
           <Link to="/excalidraw">Excalidraw FlashCard</Link>
         </li>
         <li className="nav_item">
-          <Link to="/cbf">Create Basic FlashCard</Link>
+          {isAuthenticated() ? <Logout /> : <Link to="/login">Login</Link>}
         </li>
       </ul>
     </nav>

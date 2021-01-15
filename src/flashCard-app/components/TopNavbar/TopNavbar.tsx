@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { isAuthenticated } from "../../utils/auth";
+import Logout from "../Form/Logout";
 
 import "./TopNavbar.css";
 
@@ -20,10 +22,10 @@ const TopNavbar: React.FC<Props> = ({ onClick }) => {
             <Link to="/">Home</Link>
           </li>
           <li className="nav_item">
-            <Link to="/excalidraw">Excalidraw FlashCard</Link>
+            <Link to="/excalidraw">Excalidraw FC</Link>
           </li>
           <li className="nav_item">
-            <Link to="/cbf">Create Basic FlashCard</Link>
+            {isAuthenticated() ? <Logout /> : <Link to="/login">Login</Link>}
           </li>
         </ul>
         <div

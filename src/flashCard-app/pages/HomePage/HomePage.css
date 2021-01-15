@@ -2,18 +2,18 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: wheat;
+  color: #fff;
 }
 
 .main_content {
-  background-color: #121212;
-  margin-top: 12vh;
+  background-color: #000;
+  margin-top: 8vh;
   width: 100%;
 }
 
 .hero_section {
   width: 90%;
-  height: 73vh;
+  height: 81vh;
   margin: 12px auto;
   display: flex;
   align-items: center;

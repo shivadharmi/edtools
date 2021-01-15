@@ -1,6 +1,10 @@
 @import "./_variables";
 @import "./theme";
 
+html {
+  font-family: "Poppins", sans-serif;
+}
+
 .excalidraw {
   color: var(--text-color-primary);
   display: flex;

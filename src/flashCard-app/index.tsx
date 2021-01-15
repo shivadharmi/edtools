@@ -1,19 +1,17 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ExcalidrawApp from "../excalidraw-app";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "./assets/styles/main.css";
-import SideDrawer from "./components/SideDrawer/SideDrawer";
-import SideNavBar from "./components/SideNavBar/SideNavBar";
-import HomePage from "./components/HomePage/HomePage";
-
-const onClick = () => {
-  const ele = document.getElementById("sideDrawer_main");
-  if (ele?.classList.contains("sideDrawer_main-visible")) {
-    ele.classList.remove("sideDrawer_main-visible");
-  } else {
-    ele!.classList.add("sideDrawer_main-visible");
-  }
-};
+import HomePage from "./pages/HomePage/HomePage";
+import ExcalidrawPage from "./pages/ExcalidrawPage/ExcalidrawPage";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import { isAuthenticated } from "./utils/auth";
+import CreateExcaliFlashCardPage from "./pages/CreateExcaliFlashCardPage/CreateExcaliFlashCardPage";
 
 const FlashCard = () => {
   useEffect(() => {
@@ -30,16 +28,26 @@ const FlashCard = () => {
           <HomePage />
         </Route>
         <Route path="/excalidraw" exact>
-          <div style={{ display: "flex" }}>
-            <ExcalidrawApp />
-            <SideNavBar onClick={onClick} />
-            <SideDrawer onClick={onClick} />
-          </div>
+          <ExcalidrawPage />
         </Route>
         <Route path="/preview" exact>
           <div>
             <img id="fc" src="" />
           </div>
+        </Route>
+        <Route path="/signup" exact>
+          {isAuthenticated() ? <Redirect to="/" /> : <SignUpPage />}
+        </Route>
+        <Route path="/login" exact>
+          {isAuthenticated() ? <Redirect to="/" /> : <LoginPage />}
+        </Route>
+        <Route path="/create-excali-fc" exact>
+          {isAuthenticated()}
+          {isAuthenticated() ? (
+            <CreateExcaliFlashCardPage />
+          ) : (
+            <Redirect to="/" />
+          )}
         </Route>
       </Switch>
     </Router>

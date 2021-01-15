@@ -206,8 +206,8 @@ function ExcalidrawWrapper(props: { collab: CollabAPI }) {
     });
   }, []);
   useLayoutEffect(() => {
-    let sizeFactorW = 0.97;
     const onResizeSZ = () => {
+      let sizeFactorW = 0.97;
       if (window.innerWidth < 768) {
         sizeFactorW = 0.9;
       }

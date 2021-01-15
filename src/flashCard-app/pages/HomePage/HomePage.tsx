@@ -1,8 +1,8 @@
 import React from "react";
-import TopNavbar from "../TopNavbar/TopNavbar";
+import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import "./HomePage.css";
-import Footer from "../Footer/Footer";
-import SideDrawer from "../SideDrawer/SideDrawer";
+import Footer from "../../components/Footer/Footer";
+import SideDrawer from "../../components/SideDrawer/SideDrawer";
 
 const onClick = () => {
   const ele = document.getElementById("sideDrawer_main");

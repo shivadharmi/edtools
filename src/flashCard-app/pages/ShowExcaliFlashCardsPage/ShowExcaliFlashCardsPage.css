@@ -1,0 +1,17 @@
+.showEFCP {
+  position: fixed;
+  top: 8vh;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.showEFCP_main {
+  width: 80%;
+}
+
+.showEFCP_sub {
+  width: 20%;
+}

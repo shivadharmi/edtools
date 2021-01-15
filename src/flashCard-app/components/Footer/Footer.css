@@ -1,20 +1,21 @@
 .footer {
-  position: relative;
-  height: 12vh;
-  background-color: wheat;
-  color: black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 8vh;
+  width: 100%;
+  background-color: #afb42b;
+  color: #000;
+  box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .credits {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
+  margin: 20px auto;
 }
 
 .credits p {
-  width: 100%;
+  font-weight: 500;
+  text-align: center;
 }
 
 .credits p span {
@@ -23,7 +24,7 @@
 
 @media (max-width: 768px) {
   .credits {
-    width: 71%;
+    margin-top: 20px;
   }
   .credits p {
     font-size: x-small;
