@@ -84,6 +84,7 @@ textarea {
 
 @media (max-width: 768px) {
   .form_container {
+    height: 460px;
     width: 90%;
   }
   .form {
