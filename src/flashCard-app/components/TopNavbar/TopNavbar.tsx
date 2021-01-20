@@ -19,11 +19,21 @@ const TopNavbar: React.FC<Props> = ({ onClick }) => {
         <div className="spacer"></div>
         <ul className="navbar_items">
           <li className="nav_item">
-            <Link to="/">Home</Link>
+            <Link to="/">HOME</Link>
           </li>
-          <li className="nav_item">
-            <Link to="/excalidraw">Excalidraw FC</Link>
-          </li>
+          {isAuthenticated() ? (
+            <>
+              <li className="nav_item">
+                <Link to="/excalidraw">EXCALIDRAW FC</Link>
+              </li>
+              <li className="nav_item">
+                <Link to="/list">FC LIST</Link>
+              </li>
+              <li className="nav_item">
+                <Link to="/create-basic-fc">CREATE BASIC FC</Link>
+              </li>
+            </>
+          ) : null}
           <li className="nav_item">
             {isAuthenticated() ? <Logout /> : <Link to="/login">Login</Link>}
           </li>

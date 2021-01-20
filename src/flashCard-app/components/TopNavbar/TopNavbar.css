@@ -3,15 +3,11 @@
 }
 
 .logo img {
-  height: 6vh;
+  height: 56px;
 }
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 8vh;
-  width: 100%;
+  height: 64px;
   background-color: #afb42b;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }

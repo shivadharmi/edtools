@@ -27,9 +27,21 @@ const SideDrawer: React.FC<Props> = ({ onClick }) => {
         <li className="nav_item">
           <Link to="/">Home</Link>
         </li>
-        <li className="nav_item">
-          <Link to="/excalidraw">Excalidraw FlashCard</Link>
-        </li>
+
+        {isAuthenticated() ? (
+          <>
+            <li className="nav_item">
+              <Link to="/excalidraw">EXCALIDRAW FC</Link>
+            </li>
+            <li className="nav_item">
+              <Link to="/create-basic-fc">CREATE BASIC FC</Link>
+            </li>
+            <li className="nav_item">
+              <Link to="/list">FC LIST</Link>
+            </li>
+          </>
+        ) : null}
+
         <li className="nav_item">
           {isAuthenticated() ? <Logout /> : <Link to="/login">Login</Link>}
         </li>

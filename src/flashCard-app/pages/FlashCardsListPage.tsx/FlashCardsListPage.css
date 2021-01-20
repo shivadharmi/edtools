@@ -1,0 +1,59 @@
+.FCList_wrapper {
+  width: 40%;
+  min-height: 80vh;
+  margin: 20px auto 10px;
+}
+
+.FCList_container {
+  background-color: #000;
+  padding: 10px 20px;
+  border-radius: 8px;
+  height: 100%;
+  color: #ddd;
+}
+
+.FCList_container h2 {
+  text-align: center;
+}
+
+.FCList_set {
+  border: 2px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  align-items: center;
+}
+
+.FCList_set_wrapper {
+  margin: 15px 0;
+}
+
+.FCList_set img {
+  height: 20px;
+}
+
+.FCList_set p {
+  margin: 0;
+}
+
+.FCList_card {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.FCList_card a {
+  margin: 5px 0;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.FCList_card a:hover {
+  color: #afb42b;
+}
+
+@media (max-width: 768px) {
+  .FCList_wrapper {
+    height: 100%;
+    width: 90%;
+  }
+}

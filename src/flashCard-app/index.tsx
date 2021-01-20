@@ -11,9 +11,12 @@ import ExcalidrawPage from "./pages/ExcalidrawPage/ExcalidrawPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { isAuthenticated } from "./utils/auth";
-import CreateExcaliFlashCardPage from "./pages/CreateExcaliFlashCardPage/CreateExcaliFlashCardPage";
+import CreateExcaliFlashCardPage from "../flashCard-app/pages/CreateExcaliFlashCardPage/CreateExcaliFlashCardPage";
+import CreateBasicFlashCardPage from "./pages/CreateBasicFlashCardPage/CreateBasicFlashCardPage";
+import FlashCardsListPage from "./pages/FlashCardsListPage.tsx/FlashCardsListPage";
+import FlashCardPreviewPage from "./pages/FlashCardPreviewPage/FlashCardPreviewPage";
 
-const FlashCard = () => {
+const FlashCardIndex = () => {
   useEffect(() => {
     const svgUrl = window.localStorage.getItem("link")!;
     const img = document.getElementById("fc") as HTMLImageElement;
@@ -41,17 +44,29 @@ const FlashCard = () => {
         <Route path="/login" exact>
           {isAuthenticated() ? <Redirect to="/" /> : <LoginPage />}
         </Route>
-        <Route path="/create-excali-fc" exact>
-          {isAuthenticated()}
+        <Route path="/create-excali-fc/:id" exact>
           {isAuthenticated() ? (
             <CreateExcaliFlashCardPage />
           ) : (
             <Redirect to="/" />
           )}
         </Route>
+        <Route path="/create-basic-fc" exact>
+          {isAuthenticated() ? (
+            <CreateBasicFlashCardPage />
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Route>
+        <Route path="/list" exact>
+          {isAuthenticated() ? <FlashCardsListPage /> : <Redirect to="/" />}
+        </Route>
+        <Route path="/list/:setId/:fcId" exact>
+          {isAuthenticated() ? <FlashCardPreviewPage /> : <Redirect to="/" />}
+        </Route>
       </Switch>
     </Router>
   );
 };
 
-export default FlashCard;
+export default FlashCardIndex;

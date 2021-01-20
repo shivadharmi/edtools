@@ -6,6 +6,7 @@ interface Props {
   isSignUp: boolean;
   onClick: (
     formData: {
+      name?: string;
       email: string;
       password: string;
       confirmPassword?: string;
@@ -17,6 +18,7 @@ interface Props {
 const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
   const initialFormData = isSignUp
     ? {
+        name: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -45,6 +47,7 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
       if (prev.confirmPassword) {
         return {
           ...prev,
+          name: "",
           password: "",
           confirmPassword: "",
         };
@@ -62,69 +65,79 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
 
   return (
     <div className="form_container">
-      <div>
-        <form className="form" autoComplete="off">
-          <h2 className="heading">EDTOOLS</h2>
-          {err !== null ? <p className="error">{err}</p> : null}
+      <form className="form" autoComplete="off">
+        <h2 className="heading">EDTOOLS</h2>
+        {err !== null ? <p className="error">{err}</p> : null}
+        {isSignUp ? (
           <div className="form_element">
-            <label>EMAIL ADDRESS</label>
+            <label>NAME</label>
             <input
-              type="email"
+              type="text"
               onChange={onChangeHandler}
-              placeholder="ENTER EMAIL"
-              name="email"
-              value={formData.email}
+              placeholder="ENTER FULL NAME"
+              name="name"
+              value={formData.name}
             />
           </div>
+        ) : null}
+        <div className="form_element">
+          <label>EMAIL ADDRESS</label>
+          <input
+            type="email"
+            onChange={onChangeHandler}
+            placeholder="ENTER EMAIL"
+            name="email"
+            value={formData.email}
+          />
+        </div>
+        <div className="form_element">
+          <label>PASSWORD</label>
+          <input
+            type="password"
+            onChange={onChangeHandler}
+            placeholder="ENTER PASSWORD"
+            name="password"
+            value={formData.password}
+          />
+        </div>
+        {isSignUp ? (
           <div className="form_element">
-            <label>PASSWORD</label>
+            <label>CONFIRM PASSWORD</label>
             <input
               type="password"
               onChange={onChangeHandler}
-              placeholder="ENTER PASSWORD"
-              name="password"
-              value={formData.password}
+              placeholder="CONFIRM PASSWORD"
+              name="confirmPassword"
+              value={formData.confirmPassword}
             />
           </div>
-          {isSignUp ? (
-            <div className="form_element">
-              <label>CONFIRM PASSWORD</label>
-              <input
-                type="password"
-                onChange={onChangeHandler}
-                placeholder="CONFIRM PASSWORD"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-              />
-            </div>
-          ) : null}
-          <div className="signup_info">
-            <span>
-              {isSignUp ? "Already have an account?" : "New to edtools ?"}{" "}
-              {isSignUp ? (
-                <Link to={"/login"}>LOGIN</Link>
-              ) : (
-                <Link to="/signup">SIGN UP</Link>
-              )}
-            </span>
-          </div>
-          <button
-            className="form_button"
-            onClick={async (e) => {
-              e.preventDefault();
-              if (isSignUp) {
-                if (formData.password !== formData.confirmPassword) {
-                  setError("Password did not match");
-                  return;
-                }
+        ) : null}
+        <div className="signup_info">
+          <span>
+            {isSignUp ? "Already have an account?" : "New to edtools ?"}{" "}
+            {isSignUp ? (
+              <Link to={"/login"}>LOGIN</Link>
+            ) : (
+              <Link to="/signup">SIGN UP</Link>
+            )}
+          </span>
+        </div>
+        <button
+          className="form_button"
+          onClick={async (e) => {
+            e.preventDefault();
+            if (isSignUp) {
+              if (formData.password !== formData.confirmPassword) {
+                setError("Password did not match");
+                return;
               }
-              onClick(formData, errorHandler);
-            }}
-          >
-            {isSignUp ? "Sign Up" : "Login"}
-          </button>
-        </form>
-      </div>
+            }
+            onClick(formData, errorHandler);
+          }}
+        >
+          {isSignUp ? "Sign Up" : "Login"}
+        </button>
+      </form>
     </div>
   );
 };

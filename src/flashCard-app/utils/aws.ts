@@ -49,8 +49,12 @@ export const uploadToS3 = (
     .send((err, data) => {
       if (data) {
         progress.style.display = "none";
-        const link = `https://excalifcbuck.s3.ap-south-1.amazonaws.com/${fileName}`;
-        actionText.innerHTML = link;
+        const url = encodeURIComponent(
+          `https://excalifcbuck.s3.ap-south-1.amazonaws.com/${fileName}`,
+        );
+        const link = `http://localhost:3000/create-excali-fc/${url}`;
+        actionText.setAttribute("href", link);
+        actionText.innerHTML = "Create Flash Card";
         window.localStorage.setItem("link", link);
         // alert("Successfully uploaded photo.");
       } else {

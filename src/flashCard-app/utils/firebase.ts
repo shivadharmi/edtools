@@ -9,6 +9,7 @@ import "firebase/analytics";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/database";
 import { removeAuthData, setAuthData } from "./auth";
 
 const firebaseConfig = {
@@ -22,11 +23,11 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_EDTOOLS_FIREBASE_MEASUREMENT_ID,
 };
 
-firebase.initializeApp(firebaseConfig);
+const App = firebase.initializeApp(firebaseConfig, "FCApp");
 
 // Get a reference to the database service
-export const firebaseDb = firebase.database;
-export const firebaseAuth = firebase.auth();
+export const firebaseDb = App.database();
+export const firebaseAuth = App.auth();
 firebaseAuth.onAuthStateChanged((user) => {
   if (user) {
     const userId = user.uid;

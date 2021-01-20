@@ -1,0 +1,38 @@
+.createEFCP_wrapper {
+  width: 40%;
+  min-height: 100vh;
+  margin: 20px auto 10px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.EFCP_action_buttons {
+  margin: 0 auto;
+}
+
+.EFCP_action_buttons button {
+  outline: none;
+  font-weight: bold;
+  border: none;
+  background-color: #afb42b;
+  padding: 3px 4px;
+  margin: 0 3px;
+}
+
+.EFCP_action_buttons button:hover {
+  background-color: #f5deb3e6;
+}
+
+@media (max-width: 768px) {
+  .createEFCP_wrapper {
+    height: 100%;
+    width: 90%;
+  }
+  .EFCP_action_buttons button {
+    font-size: x-small;
+    padding: 1px 2px;
+    margin: 0 2px;
+  }
+}

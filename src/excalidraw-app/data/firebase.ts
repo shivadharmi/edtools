@@ -10,9 +10,8 @@ let firebasePromise: Promise<
 > | null = null;
 
 const loadFirebase = async () => {
-  const firebase = (
-    await import(/* webpackChunkName: "firebase" */ "firebase/app")
-  ).default;
+  const firebase = (await import(/* webpackChunkName: "firebase" */ "firebase"))
+    .default;
   await import(/* webpackChunkName: "firestore" */ "firebase/firestore");
 
   const firebaseConfig = JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG);
