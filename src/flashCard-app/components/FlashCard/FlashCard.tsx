@@ -51,8 +51,8 @@ const FlashCard = () => {
 
   const errorHandler = (message: string) => {
     setError(message);
-    setFormData(prev =>{
-      return{ ...initialFormData, EXFCBackPage: prev.EXFCBackPage }
+    setFormData((prev) => {
+      return { ...initialFormData, EXFCBackPage: prev.EXFCBackPage };
     });
     const tId = setTimeout(() => {
       clearTimeout(tId);
@@ -269,7 +269,7 @@ const FlashCard = () => {
           </div>
           <div className="form_element">
             <label>Back Page</label>
-            {getDataLS('link') ? (
+            {getDataLS("link") ? (
               <input
                 type="text"
                 onChange={onChangeHandler}

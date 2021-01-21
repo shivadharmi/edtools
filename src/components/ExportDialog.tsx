@@ -171,13 +171,8 @@ const ExportModal = ({
             <div id="progress_main">
               <div id="progress_inner"></div>
             </div>
-            <p id="action_text">
-              uploading...
-            </p>
-            <Link
-              id="action_link"
-              to="/create-excali-fc"
-            >
+            <p id="action_text">uploading...</p>
+            <Link id="action_link" to="/create-excali-fc">
               Create Create Flash Card
             </Link>
             {/* <img src="/images/copy.svg"  onClick={async()=>{

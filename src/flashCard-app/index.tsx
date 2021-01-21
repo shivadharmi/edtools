@@ -29,10 +29,19 @@ const FlashCardIndex = () => {
       <Switch>
         <Route path="/create-excali-fc" exact>
           {isAuthenticated() ? (
-            <>{getDataLS("link") ? <CreateExcaliFlashCardPage /> : <>{alert("No excalidraw Link found")}<Redirect to="/" /></>}</>
+            <>
+              {getDataLS("link") ? (
+                <CreateExcaliFlashCardPage />
+              ) : (
+                <>
+                  {alert("No excalidraw Link found")}
+                  <Redirect to="/" />
+                </>
+              )}
+            </>
           ) : (
-              <Redirect to="/" />
-            )}
+            <Redirect to="/" />
+          )}
         </Route>
         <Route path="/" exact>
           <HomePage />
@@ -50,8 +59,8 @@ const FlashCardIndex = () => {
           {isAuthenticated() ? (
             <CreateBasicFlashCardPage />
           ) : (
-              <Redirect to="/" />
-            )}
+            <Redirect to="/" />
+          )}
         </Route>
         <Route path="/list" exact>
           {isAuthenticated() ? <FlashCardsListPage /> : <Redirect to="/" />}
@@ -63,8 +72,8 @@ const FlashCardIndex = () => {
           {isAuthenticated() ? (
             <CreateExcaliFlashCardPage />
           ) : (
-              <Redirect to="/" />
-            )}
+            <Redirect to="/" />
+          )}
         </Route>
       </Switch>
     </Router>
