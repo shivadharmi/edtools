@@ -30,6 +30,9 @@ const FlashCard = () => {
           isImage: true,
         };
       });
+    } else {
+      alert("Cannot retrieve the link");
+      window.location.pathname = "/";
     }
   }, []);
 
@@ -88,7 +91,7 @@ const FlashCard = () => {
                   if (res) {
                     errorHandler(res.message);
                   } else {
-                    window.location.assign("/list");
+                    window.location.pathname = "/list";
                     setIsCreating(false);
                   }
                 });
@@ -108,7 +111,7 @@ const FlashCard = () => {
       if (response) {
         errorHandler(response.message);
       } else {
-        window.location.assign("/");
+        window.location.pathname = "/list";
       }
     }
   };

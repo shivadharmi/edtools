@@ -29,16 +29,7 @@ const FlashCardIndex = () => {
       <Switch>
         <Route path="/create-excali-fc" exact>
           {isAuthenticated() ? (
-            <>
-              {getDataLS("link") ? (
-                <CreateExcaliFlashCardPage />
-              ) : (
-                <>
-                  {alert("No excalidraw Link found")}
-                  <Redirect to="/" />
-                </>
-              )}
-            </>
+            <CreateExcaliFlashCardPage />
           ) : (
             <Redirect to="/" />
           )}
