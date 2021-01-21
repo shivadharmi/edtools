@@ -34,7 +34,7 @@ const FlashCard = () => {
   }, []);
 
   const [err, setError] = useState<null | string>(null);
-
+  const [isCreating, setIsCreating] = useState(false);
   const onChangeHandler = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -86,14 +86,14 @@ const FlashCard = () => {
                   if (res) {
                     errorHandler(res.message);
                   } else {
-                    window.location.assign("/");
+                    window.location.assign("/list");
+                    setIsCreating(false);
                   }
                 });
             }
           });
       }
     } else {
-      console.log(data.FCSetId);
       const ref = firebaseDb.ref(
         `flashCards/${getDataLS("userId")}/cards/${data.FCSetId}`,
       );
@@ -113,9 +113,9 @@ const FlashCard = () => {
 
   const [FCSetsData, setFCSetsData] = useState<
     | {
-        FCkey: string;
-        FCvalue: string;
-      }[]
+      FCkey: string;
+      FCvalue: string;
+    }[]
     | null
   >(null);
 
@@ -124,12 +124,12 @@ const FlashCard = () => {
       .ref(`flashCards/${getDataLS("userId")}/sets`)
       .once("value")
       .then((snapshot) => {
+        const modifiedData: {
+          FCkey: string;
+          FCvalue: string;
+        }[] = [];
         const data = snapshot.val();
         if (data) {
-          const modifiedData: {
-            FCkey: string;
-            FCvalue: string;
-          }[] = [];
           Object.keys(data).forEach((key, index) => {
             if (index === 0) {
               setFormData((prev) => {
@@ -144,8 +144,8 @@ const FlashCard = () => {
               FCvalue: data[key].EXFCSetName as string,
             });
           });
-          setFCSetsData(modifiedData);
         }
+        setFCSetsData(modifiedData);
       });
   }, [tab]);
 
@@ -218,20 +218,20 @@ const FlashCard = () => {
               </div>
             </>
           ) : (
-            <>
-              <h2 className="heading">Select FlashCard Set</h2>
-              <div className="form_element">
-                <label>SELECT SET</label>
-                <select
-                  name="FCSetId"
-                  onChange={onChangeHandler}
-                  value={formData.FCSetId}
-                >
-                  {renderOptions(FCSetsData)};
-                </select>
-              </div>
-            </>
-          )}
+              <>
+                <h2 className="heading">Select FlashCard Set</h2>
+                <div className="form_element">
+                  <label>SELECT SET</label>
+                  {FCSetsData ? <>{FCSetsData?.length === 0 ? <p>No FlashCard Card sets Create One</p> : <select
+                    name="FCSetId"
+                    onChange={onChangeHandler}
+                    value={formData.FCSetId}
+                  >
+                    {renderOptions(FCSetsData)};
+                </select>}</> : <p>Loading...</p>}
+                </div>
+              </>
+            )}
 
           <h2 className="heading">Create flashCards</h2>
           <div className="form_element">
@@ -267,24 +267,25 @@ const FlashCard = () => {
                 readOnly
               />
             ) : (
-              <textarea
-                rows={4}
-                onChange={onChangeHandler}
-                placeholder="ENTER CONTENT"
-                name="EXFCBackPage"
-                value={formData.EXFCBackPage}
-              />
-            )}
+                <textarea
+                  rows={4}
+                  onChange={onChangeHandler}
+                  placeholder="ENTER CONTENT"
+                  name="EXFCBackPage"
+                  value={formData.EXFCBackPage}
+                />
+              )}
           </div>
           <button
             className="form_button"
             onClick={async (e) => {
               e.preventDefault();
+              setIsCreating(true);
               await saveDataToDb(formData);
-              // console.log(formData);
             }}
           >
             Create Flash Card
+            {isCreating ? <img height="15px" width="20px" src="/images/25.svg" /> : null}
           </button>
         </form>
       </div>

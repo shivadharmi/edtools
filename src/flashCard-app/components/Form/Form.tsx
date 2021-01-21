@@ -12,6 +12,7 @@ interface Props {
       confirmPassword?: string;
     },
     errorHandler: (message: string) => void,
+    setIsLogging: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
 }
 
@@ -30,7 +31,8 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
   const [formData, setFormData] = useState(initialFormData);
 
   const [err, setError] = useState<null | string>(null);
-
+  // const [formErr, setFormErr] = useState<null|{formElement}>(null)
+  const [isLogging, setIsLogging] = useState(false);
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setFormData((prev) => {
@@ -62,6 +64,10 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
       setError(null);
     }, 2000);
   };
+
+  const isEmpty = (data:string) =>{
+    return  data === "";
+  }
 
   return (
     <div className="form_container">
@@ -128,14 +134,16 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
             e.preventDefault();
             if (isSignUp) {
               if (formData.password !== formData.confirmPassword) {
-                setError("Password did not match");
+                errorHandler("Password did not match");
                 return;
               }
             }
-            onClick(formData, errorHandler);
+            setIsLogging(true);
+            onClick(formData, errorHandler,setIsLogging);
           }}
         >
           {isSignUp ? "Sign Up" : "Login"}
+          {isLogging ? <img height="15px" width="20px" src="/images/25.svg"/>:null}
         </button>
       </form>
     </div>

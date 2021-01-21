@@ -13,6 +13,7 @@ const onClickHandler = (
     confirmPassword?: string;
   },
   errorHandler: (message: string) => void,
+  setIsLogging:React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   firebaseAuth
     .createUserWithEmailAndPassword(formData.email, formData.password)
@@ -25,10 +26,12 @@ const onClickHandler = (
         },
         (err) => {
           if (err) {
+            setIsLogging(false);
             errorHandler(err.message);
           } else {
             setAuthData(userId);
-            window.location.pathname = "/";
+            window.location.pathname = "/list";
+            setIsLogging(false);
           }
         },
       );

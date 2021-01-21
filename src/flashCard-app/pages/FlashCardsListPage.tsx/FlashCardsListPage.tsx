@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import { getDataLS } from "../../utils/auth";
 import { firebaseAuth, firebaseDb } from "../../utils/firebase";
@@ -28,14 +29,14 @@ const renderFCSetListItem = (
 
 const FlashCardsListPage = () => {
   const [FCData, setFCData] = useState<
-    | {
-        key: string;
-        value: {
-          EXFCSetName: string;
-          EXFCSetSubjects: string;
-          EXFCSetDescription: string;
-        };
-      }[]
+    {
+      key: string;
+      value: {
+        EXFCSetName: string;
+        EXFCSetSubjects: string;
+        EXFCSetDescription: string;
+      };
+    }[]
     | null
   >(null);
 
@@ -58,8 +59,8 @@ const FlashCardsListPage = () => {
             value: data[key],
           });
         });
-        setFCData(dataArray);
       }
+      setFCData(dataArray);
     });
   }, []);
   return (
@@ -67,7 +68,7 @@ const FlashCardsListPage = () => {
       <div className="FCList_wrapper">
         <div className="FCList_container">
           <h2>FlashCard Sets</h2>
-          {FCData ? renderFCSetListItem(FCData) : <p>Loading...</p>}
+          {FCData ? <>{FCData.length === 0 ?<p>NO FLASH SETS <Link to="/create-excali-fc">Create Excalidraw FC</Link> <Link to="/create-basic-fc">Create Basic FC</Link></p>:renderFCSetListItem(FCData)}</> : <p>Loading...</p>}
         </div>
       </div>
     </Layout>

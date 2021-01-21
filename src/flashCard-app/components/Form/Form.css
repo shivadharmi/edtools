@@ -1,6 +1,6 @@
 .form_container {
   width: 40%;
-  height: 80vh;
+  height: 85vh;
   margin: 20px auto 10px;
 }
 
@@ -37,6 +37,7 @@ select {
 .form_button {
   margin: 20px auto;
   background-color: #afb42b;
+  border:none;
   border-radius: 8px;
   padding: 8px 15px;
   font-weight: 600;
@@ -70,6 +71,11 @@ select {
 .heading {
   text-align: center;
 }
+
+/* .form p{
+  margin: 0;
+  padding: 0;
+} */
 
 @media (max-width: 768px) {
   .form_container {

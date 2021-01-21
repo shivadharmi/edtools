@@ -10,15 +10,18 @@ const onClickHandler = (
     confirmPassword?: string;
   },
   errorHandler: (message: string) => void,
+  setIsLogging:React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   firebaseAuth
     .signInWithEmailAndPassword(formData.email, formData.password)
     .then((user) => {
       if (user) {
-        window.location.pathname = "/";
+        window.location.pathname = "/list";
+        setIsLogging(false);
       }
     })
     .catch((err) => {
+      setIsLogging(false);
       errorHandler(err.message);
     });
 };
