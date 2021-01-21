@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { render, unmountComponentAtNode } from "react-dom";
+import { Link } from "react-router-dom";
 import { ActionsManagerInterface } from "../actions/types";
 // import { probablySupportsClipboardBlob } from "../clipboard";
 import { canvasToBlob } from "../data/blob";
@@ -170,17 +171,15 @@ const ExportModal = ({
             <div id="progress_main">
               <div id="progress_inner"></div>
             </div>
-            <p
-              id="action_text"
-              onClick={(e) => {
-                const actionText = document
-                  .getElementById("action_text")
-                  ?.getAttribute("data-url")!;
-                window.location.pathname = actionText;
-              }}
-            >
+            <p id="action_text">
               uploading...
             </p>
+            <Link
+              id="action_link"
+              to="/create-excali-fc"
+            >
+              Create Create Flash Card
+            </Link>
             {/* <img src="/images/copy.svg"  onClick={async()=>{
               const text = document.getElementById("action-text")!.innerText;
               await navigator.clipboard.writeText(text);

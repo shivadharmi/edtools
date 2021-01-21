@@ -10,7 +10,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ExcalidrawPage from "./pages/ExcalidrawPage/ExcalidrawPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import { isAuthenticated } from "./utils/auth";
+import { isAuthenticated, getDataLS } from "./utils/auth";
 import CreateExcaliFlashCardPage from "../flashCard-app/pages/CreateExcaliFlashCardPage/CreateExcaliFlashCardPage";
 import CreateBasicFlashCardPage from "./pages/CreateBasicFlashCardPage/CreateBasicFlashCardPage";
 import FlashCardsListPage from "./pages/FlashCardsListPage.tsx/FlashCardsListPage";
@@ -27,6 +27,13 @@ const FlashCardIndex = () => {
   return (
     <Router>
       <Switch>
+        <Route path="/create-excali-fc" exact>
+          {isAuthenticated() ? (
+            <>{getDataLS("link") ? <CreateExcaliFlashCardPage /> : <>{alert("No excalidraw Link found")}<Redirect to="/" /></>}</>
+          ) : (
+              <Redirect to="/" />
+            )}
+        </Route>
         <Route path="/" exact>
           <HomePage />
         </Route>
@@ -43,8 +50,8 @@ const FlashCardIndex = () => {
           {isAuthenticated() ? (
             <CreateBasicFlashCardPage />
           ) : (
-            <Redirect to="/" />
-          )}
+              <Redirect to="/" />
+            )}
         </Route>
         <Route path="/list" exact>
           {isAuthenticated() ? <FlashCardsListPage /> : <Redirect to="/" />}
@@ -52,12 +59,12 @@ const FlashCardIndex = () => {
         <Route path="/list/:setId/:fcId" exact>
           {isAuthenticated() ? <FlashCardPreviewPage /> : <Redirect to="/" />}
         </Route>
-        <Route path="/create-excali-fc/:id">
+        <Route path="/create-excali-fc/:id" exact>
           {isAuthenticated() ? (
             <CreateExcaliFlashCardPage />
           ) : (
-            <Redirect to="/" />
-          )}
+              <Redirect to="/" />
+            )}
         </Route>
       </Switch>
     </Router>

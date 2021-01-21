@@ -20,18 +20,18 @@ const FlashCard = () => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  const { id } = useParams<{ id: string }>();
+  // const { id } = useParams<{ id: string }>();
   useEffect(() => {
-    if (id) {
+    if (getDataLS("link")) {
       setFormData((prev) => {
         return {
           ...prev,
-          EXFCBackPage: decodeURIComponent(id),
+          EXFCBackPage: decodeURIComponent(getDataLS("link")!),
           isImage: true,
         };
       });
     }
-  }, [id]);
+  }, []);
 
   const [err, setError] = useState<null | string>(null);
   const [isCreating, setIsCreating] = useState(false);
@@ -51,7 +51,9 @@ const FlashCard = () => {
 
   const errorHandler = (message: string) => {
     setError(message);
-    setFormData({ ...initialFormData, EXFCBackPage: id });
+    setFormData(prev =>{
+      return{ ...initialFormData, EXFCBackPage: prev.EXFCBackPage }
+    });
     const tId = setTimeout(() => {
       clearTimeout(tId);
       setError(null);
@@ -267,7 +269,7 @@ const FlashCard = () => {
           </div>
           <div className="form_element">
             <label>Back Page</label>
-            {id ? (
+            {getDataLS('link') ? (
               <input
                 type="text"
                 onChange={onChangeHandler}

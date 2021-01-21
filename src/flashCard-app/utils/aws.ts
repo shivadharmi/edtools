@@ -37,6 +37,7 @@ export const uploadToS3 = (
   };
   const progress = document.getElementById("progress_inner")!;
   const actionText = document.getElementById("action_text")!;
+  const actionLink = document.getElementById("action_link")!;
   progress.style.display = "block";
   actionText.style.display = "block";
   s3Bucket
@@ -51,11 +52,10 @@ export const uploadToS3 = (
         const url = encodeURIComponent(
           `https://excalifcbuck.s3.ap-south-1.amazonaws.com/${fileName}`,
         );
-        const link = `/create-excali-fc/${url}`;
-        actionText.setAttribute("data-url", link);
-        actionText.innerHTML = "Create Flash Card";
-        window.localStorage.setItem("link", link);
-        // alert("Successfully uploaded photo.");
+        window.localStorage.setItem("link", url);
+        actionText.style.display = "none";
+        actionLink.style.display = "block";
+        // actionText.innerHTML = "Create Flash Card";
       } else {
         alert(err.message);
       }

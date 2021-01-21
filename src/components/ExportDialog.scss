@@ -44,16 +44,24 @@
       background-color: #4caf50;
     }
 
-    #action_text {
+    #action_link {
       cursor: pointer;
       display: none;
       margin: 0;
       padding: 5px 0;
     }
 
-    #action_text:hover {
+    #action_text {
+      display: none;
+      margin: 0;
+      padding: 5px 0;
+    }
+
+    #action_link:hover {
       color: #4caf50;
     }
+
+
     .TextInput {
       height: calc(1rem - 3px);
     }
