@@ -52,7 +52,7 @@ export const uploadToS3 = (
           `https://excalifcbuck.s3.ap-south-1.amazonaws.com/${fileName}`,
         );
         const link = `/create-excali-fc/${url}`;
-        actionText.setAttribute("href", link);
+        actionText.setAttribute("data-url", link);
         actionText.innerHTML = "Create Flash Card";
         window.localStorage.setItem("link", link);
         // alert("Successfully uploaded photo.");

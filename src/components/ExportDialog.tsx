@@ -170,16 +170,17 @@ const ExportModal = ({
             <div id="progress_main">
               <div id="progress_inner"></div>
             </div>
-            <a
+            <p
               id="action_text"
               onClick={(e) => {
-                const actionText = document.getElementById("action_text")
-                  ?.innerHTML!;
-                window.location.assign(actionText);
+                const actionText = document
+                  .getElementById("action_text")
+                  ?.getAttribute("data-url")!;
+                window.location.pathname = actionText;
               }}
             >
               uploading...
-            </a>
+            </p>
             {/* <img src="/images/copy.svg"  onClick={async()=>{
               const text = document.getElementById("action-text")!.innerText;
               await navigator.clipboard.writeText(text);
