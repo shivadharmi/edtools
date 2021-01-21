@@ -30,8 +30,10 @@ const FlashCard = () => {
           isImage: true,
         };
       });
-    } else {
-      alert("Cannot retrieve the link");
+    } else if (window.location.pathname !== "/create-basic-fc") {
+      alert(
+        "Cannot retrieve link for excalidraw image. Try to export the image again.",
+      );
       window.location.pathname = "/";
     }
   }, []);
@@ -299,7 +301,7 @@ const FlashCard = () => {
               await saveDataToDb(formData);
             }}
           >
-            Create Flash Card
+            CREATE FLASH CARD
             {isCreating ? (
               <img
                 height="15px"

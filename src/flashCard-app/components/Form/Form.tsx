@@ -142,7 +142,7 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
             onClick(formData, errorHandler, setIsLogging);
           }}
         >
-          {isSignUp ? "Sign Up" : "Login"}
+          {isSignUp ? "SIGN UP " : "LOGIN "}
           {isLogging ? (
             <img
               height="15px"
