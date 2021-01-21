@@ -16,6 +16,7 @@ export function setAuthData(userId: string) {
 }
 
 export function removeAuthData() {
+  removeDataLS("link");
   removeDataLS("userId");
   removeDataLS("isAuthenticated");
 }
