@@ -39,13 +39,6 @@ const FlashCardIndex = () => {
         <Route path="/login" exact>
           {isAuthenticated() ? <Redirect to="/" /> : <LoginPage />}
         </Route>
-        <Route path="/create-excali-fc/:id" exact>
-          {isAuthenticated() ? (
-            <CreateExcaliFlashCardPage />
-          ) : (
-            <Redirect to="/" />
-          )}
-        </Route>
         <Route path="/create-basic-fc" exact>
           {isAuthenticated() ? (
             <CreateBasicFlashCardPage />
@@ -58,6 +51,13 @@ const FlashCardIndex = () => {
         </Route>
         <Route path="/list/:setId/:fcId" exact>
           {isAuthenticated() ? <FlashCardPreviewPage /> : <Redirect to="/" />}
+        </Route>
+        <Route path="/create-excali-fc/:id">
+          {isAuthenticated() ? (
+            <CreateExcaliFlashCardPage />
+          ) : (
+            <Redirect to="/" />
+          )}
         </Route>
       </Switch>
     </Router>
