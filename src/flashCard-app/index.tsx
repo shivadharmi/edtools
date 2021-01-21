@@ -33,11 +33,6 @@ const FlashCardIndex = () => {
         <Route path="/excalidraw" exact>
           <ExcalidrawPage />
         </Route>
-        <Route path="/preview" exact>
-          <div>
-            <img id="fc" src="" />
-          </div>
-        </Route>
         <Route path="/signup" exact>
           {isAuthenticated() ? <Redirect to="/" /> : <SignUpPage />}
         </Route>

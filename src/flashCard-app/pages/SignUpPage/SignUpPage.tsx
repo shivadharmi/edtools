@@ -13,7 +13,7 @@ const onClickHandler = (
     confirmPassword?: string;
   },
   errorHandler: (message: string) => void,
-  setIsLogging:React.Dispatch<React.SetStateAction<boolean>>
+  setIsLogging: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
   firebaseAuth
     .createUserWithEmailAndPassword(formData.email, formData.password)

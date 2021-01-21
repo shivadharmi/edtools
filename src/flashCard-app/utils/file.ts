@@ -1,4 +1,4 @@
-import { uploadToS3 } from "./aws";
+// import { uploadToS3 } from "./aws";
 export const blobToString = async (blob: Blob) => {
   const reader = new FileReader();
 
@@ -8,7 +8,6 @@ export const blobToString = async (blob: Blob) => {
     const base64String = reader.result as string;
     window.localStorage.setItem("fc", base64String);
     // uploadToS3(base64String,"image/svg+xml");
-    console.log(base64String);
   };
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { firebaseAuth, firebaseDb } from "../../utils/firebase";
+import { firebaseDb } from "../../utils/firebase";
 import { getDataLS } from "../../utils/auth";
 
 interface Props {
@@ -44,7 +44,7 @@ const FCSetListItem: React.FC<Props> = ({ FCSetId, FCSetTitle }) => {
         setFCData(dataArray);
       }
     });
-  }, []);
+  }, [FCSetId]);
 
   const [isVisible, setIsVisible] = useState(false);
   return (
@@ -54,6 +54,7 @@ const FCSetListItem: React.FC<Props> = ({ FCSetId, FCSetTitle }) => {
         <img
           id="FCList_arrow"
           src={isVisible ? "/images/up-arrow.svg" : "/images/down-arrow.svg"}
+          alt="arrow"
           onClick={(e) => {
             setIsVisible((prevState) => !prevState);
           }}

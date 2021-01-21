@@ -39,12 +39,11 @@ export const uploadToS3 = (
   const actionText = document.getElementById("action_text")!;
   progress.style.display = "block";
   actionText.style.display = "block";
-  const upload = s3Bucket
+  s3Bucket
     .putObject(params)
     .on("httpUploadProgress", (eve) => {
       const percentage = (eve.loaded / eve.total) * 100;
       progress.style.width = `${percentage}%`;
-      console.log();
     })
     .send((err, data) => {
       if (data) {
@@ -58,7 +57,6 @@ export const uploadToS3 = (
         window.localStorage.setItem("link", link);
         // alert("Successfully uploaded photo.");
       } else {
-        console.log(err);
         alert(err.message);
       }
     });

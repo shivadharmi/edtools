@@ -21,7 +21,7 @@ import { AppState, LibraryItem, LibraryItems } from "../types";
 import { muteFSAbortError } from "../utils";
 import { SelectedShapeActions, ShapesSwitcher, ZoomActions } from "./Actions";
 import { BackgroundPickerAndDarkModeToggle } from "./BackgroundPickerAndDarkModeToggle";
-import CollabButton from "./CollabButton";
+// import CollabButton from "./CollabButton";
 import { ErrorDialog } from "./ErrorDialog";
 import { ExportCB, ExportDialog } from "./ExportDialog";
 import { FixedSideContainer } from "./FixedSideContainer";

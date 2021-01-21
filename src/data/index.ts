@@ -1,4 +1,4 @@
-import { fileSave } from "browser-nativefs";
+// import { fileSave } from "browser-nativefs";
 import {
   copyCanvasToClipboardAsPng,
   copyTextToSystemClipboard,
@@ -11,7 +11,7 @@ import { AppState } from "../types";
 import { canvasToBlob } from "./blob";
 import { serializeAsJSON } from "./json";
 
-import { blobToString } from "../flashCard-app/utils/file";
+// import { blobToString } from "../flashCard-app/utils/file";
 import { uploadToS3 } from "../flashCard-app/utils/aws";
 import stringGen from "randomstring";
 

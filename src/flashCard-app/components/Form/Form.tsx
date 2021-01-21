@@ -12,7 +12,7 @@ interface Props {
       confirmPassword?: string;
     },
     errorHandler: (message: string) => void,
-    setIsLogging: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLogging: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
 }
 
@@ -65,9 +65,9 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
     }, 2000);
   };
 
-  const isEmpty = (data:string) =>{
-    return  data === "";
-  }
+  // const isEmpty = (data: string) => {
+  //   return data === "";
+  // };
 
   return (
     <div className="form_container">
@@ -139,11 +139,18 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
               }
             }
             setIsLogging(true);
-            onClick(formData, errorHandler,setIsLogging);
+            onClick(formData, errorHandler, setIsLogging);
           }}
         >
           {isSignUp ? "Sign Up" : "Login"}
-          {isLogging ? <img height="15px" width="20px" src="/images/25.svg"/>:null}
+          {isLogging ? (
+            <img
+              height="15px"
+              width="20px"
+              src="/images/25.svg"
+              alt="spinner"
+            />
+          ) : null}
         </button>
       </form>
     </div>

@@ -41,7 +41,7 @@ const FlashCardPreviewPage = () => {
               {isBackVisible ? (
                 <div className="back" onClick={flipHandler}>
                   {data?.isImage ? (
-                    <img src={data.EXFCBackPage} />
+                    <img src={data.EXFCBackPage} alt={data.EXFCTitle} />
                   ) : (
                     <p className="FC_content">{data?.EXFCBackPage}</p>
                   )}

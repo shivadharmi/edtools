@@ -3,7 +3,7 @@ import Layout from "../Layout/Layout";
 import "./FlashCard.css";
 import "../../components/Form/Form.css";
 import { useParams } from "react-router-dom";
-import { firebaseDb, firebaseAuth } from "../../utils/firebase";
+import { firebaseDb } from "../../utils/firebase";
 import { getDataLS } from "../../utils/auth";
 
 const FlashCard = () => {
@@ -31,7 +31,7 @@ const FlashCard = () => {
         };
       });
     }
-  }, []);
+  }, [id]);
 
   const [err, setError] = useState<null | string>(null);
   const [isCreating, setIsCreating] = useState(false);
@@ -113,9 +113,9 @@ const FlashCard = () => {
 
   const [FCSetsData, setFCSetsData] = useState<
     | {
-      FCkey: string;
-      FCvalue: string;
-    }[]
+        FCkey: string;
+        FCvalue: string;
+      }[]
     | null
   >(null);
 
@@ -218,20 +218,30 @@ const FlashCard = () => {
               </div>
             </>
           ) : (
-              <>
-                <h2 className="heading">Select FlashCard Set</h2>
-                <div className="form_element">
-                  <label>SELECT SET</label>
-                  {FCSetsData ? <>{FCSetsData?.length === 0 ? <p>No FlashCard Card sets Create One</p> : <select
-                    name="FCSetId"
-                    onChange={onChangeHandler}
-                    value={formData.FCSetId}
-                  >
-                    {renderOptions(FCSetsData)};
-                </select>}</> : <p>Loading...</p>}
-                </div>
-              </>
-            )}
+            <>
+              <h2 className="heading">Select FlashCard Set</h2>
+              <div className="form_element">
+                <label>SELECT SET</label>
+                {FCSetsData ? (
+                  <>
+                    {FCSetsData?.length === 0 ? (
+                      <p>No FlashCard Card sets Create One</p>
+                    ) : (
+                      <select
+                        name="FCSetId"
+                        onChange={onChangeHandler}
+                        value={formData.FCSetId}
+                      >
+                        {renderOptions(FCSetsData)};
+                      </select>
+                    )}
+                  </>
+                ) : (
+                  <p>Loading...</p>
+                )}
+              </div>
+            </>
+          )}
 
           <h2 className="heading">Create flashCards</h2>
           <div className="form_element">
@@ -267,14 +277,14 @@ const FlashCard = () => {
                 readOnly
               />
             ) : (
-                <textarea
-                  rows={4}
-                  onChange={onChangeHandler}
-                  placeholder="ENTER CONTENT"
-                  name="EXFCBackPage"
-                  value={formData.EXFCBackPage}
-                />
-              )}
+              <textarea
+                rows={4}
+                onChange={onChangeHandler}
+                placeholder="ENTER CONTENT"
+                name="EXFCBackPage"
+                value={formData.EXFCBackPage}
+              />
+            )}
           </div>
           <button
             className="form_button"
@@ -285,7 +295,14 @@ const FlashCard = () => {
             }}
           >
             Create Flash Card
-            {isCreating ? <img height="15px" width="20px" src="/images/25.svg" /> : null}
+            {isCreating ? (
+              <img
+                height="15px"
+                width="20px"
+                src="/images/25.svg"
+                alt="Spinner"
+              />
+            ) : null}
           </button>
         </form>
       </div>
