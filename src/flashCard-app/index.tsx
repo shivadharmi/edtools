@@ -29,6 +29,10 @@ const FlashCardIndex = () => {
   return (
     <Router>
       <Switch>
+        <Route
+          path="/verify/reset-password/link"
+          component={PasswordVerificationLinkPage}
+        />
         <Route path="/create-excali-fc" exact>
           {isAuthenticated() ? (
             <CreateExcaliFlashCardPage />
@@ -40,7 +44,7 @@ const FlashCardIndex = () => {
           <HomePage />
         </Route>
         <Route path="/excalidraw" exact>
-          <ExcalidrawPage />
+          {isAuthenticated() ? <ExcalidrawPage /> : <Redirect to="/" />}
         </Route>
         <Route path="/signup" exact>
           {isAuthenticated() ? <Redirect to="/" /> : <SignUpPage />}
@@ -70,9 +74,6 @@ const FlashCardIndex = () => {
         </Route>
         <Route path="/reset-password" exact>
           <ResetPasswordPage />
-        </Route>
-        <Route path="/verify/reset-password/link/">
-          <PasswordVerificationLinkPage />
         </Route>
       </Switch>
     </Router>
