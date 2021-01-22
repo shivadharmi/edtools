@@ -71,7 +71,7 @@ const FlashCardIndex = () => {
         <Route path="/reset-password" exact>
           <ResetPasswordPage />
         </Route>
-        <Route path="/verify/reset-password/link/" exact>
+        <Route path="/verify/reset-password/link/">
           <PasswordVerificationLinkPage />
         </Route>
       </Switch>
