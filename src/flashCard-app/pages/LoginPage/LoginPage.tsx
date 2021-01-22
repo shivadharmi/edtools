@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "../../components/Form/Form";
 import Layout from "../../components/Layout/Layout";
+import { setAuthData } from "../../utils/auth";
 import { firebaseAuth } from "../../utils/firebase";
 
 const onClickHandler = (
@@ -16,7 +17,12 @@ const onClickHandler = (
     .signInWithEmailAndPassword(formData.email, formData.password)
     .then((user) => {
       if (user) {
-        window.location.pathname = "/list";
+        if (user.user?.emailVerified) {
+          setAuthData(user.user.uid);
+          window.location.pathname = "/list";
+        } else {
+          errorHandler("Please verify email verification link.");
+        }
         setIsLogging(false);
       }
     })

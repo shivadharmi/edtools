@@ -10,11 +10,13 @@ import HomePage from "./pages/HomePage/HomePage";
 import ExcalidrawPage from "./pages/ExcalidrawPage/ExcalidrawPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import { isAuthenticated, getDataLS } from "./utils/auth";
+import { isAuthenticated } from "./utils/auth";
 import CreateExcaliFlashCardPage from "../flashCard-app/pages/CreateExcaliFlashCardPage/CreateExcaliFlashCardPage";
 import CreateBasicFlashCardPage from "./pages/CreateBasicFlashCardPage/CreateBasicFlashCardPage";
 import FlashCardsListPage from "./pages/FlashCardsListPage.tsx/FlashCardsListPage";
 import FlashCardPreviewPage from "./pages/FlashCardPreviewPage/FlashCardPreviewPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage.tsx/ResetPasswordPage";
+import PasswordVerificationLinkPage from "./pages/PasswordVerificationLinkPage.tsx/PasswordVerificationLinkPage";
 
 const FlashCardIndex = () => {
   useEffect(() => {
@@ -59,12 +61,18 @@ const FlashCardIndex = () => {
         <Route path="/list/:setId/:fcId" exact>
           {isAuthenticated() ? <FlashCardPreviewPage /> : <Redirect to="/" />}
         </Route>
-        <Route path="/create-excali-fc/:id" exact>
+        <Route path="/create-excali-fc/" exact>
           {isAuthenticated() ? (
             <CreateExcaliFlashCardPage />
           ) : (
             <Redirect to="/" />
           )}
+        </Route>
+        <Route path="/reset-password" exact>
+          <ResetPasswordPage />
+        </Route>
+        <Route path="/verify/reset-password/link/" exact>
+          <PasswordVerificationLinkPage />
         </Route>
       </Switch>
     </Router>

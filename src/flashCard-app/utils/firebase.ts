@@ -10,7 +10,7 @@ import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/database";
-import { removeAuthData, setAuthData } from "./auth";
+import { removeAuthData } from "./auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_EDTOOLS_FIREBASE_API_KEY,
@@ -31,7 +31,6 @@ export const firebaseAuth = App.auth();
 firebaseAuth.onAuthStateChanged((user) => {
   if (user) {
     const userId = user.uid;
-    setAuthData(userId);
   } else {
     removeAuthData();
   }

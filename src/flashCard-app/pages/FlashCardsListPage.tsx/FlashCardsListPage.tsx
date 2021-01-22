@@ -6,27 +6,6 @@ import { firebaseDb } from "../../utils/firebase";
 import FCSetListItem from "./FCSetListItem";
 import "./FlashCardsListPage.css";
 
-const renderFCSetListItem = (
-  data: {
-    key: string;
-    value: {
-      EXFCSetName: string;
-      EXFCSetSubjects: string;
-      EXFCSetDescription: string;
-    };
-  }[],
-) => {
-  return data.map((val) => {
-    return (
-      <FCSetListItem
-        key={val.key}
-        FCSetId={val.key}
-        FCSetTitle={val.value.EXFCSetName}
-      />
-    );
-  });
-};
-
 const FlashCardsListPage = () => {
   const [FCData, setFCData] = useState<
     | {
@@ -40,7 +19,7 @@ const FlashCardsListPage = () => {
     | null
   >(null);
 
-  useEffect(() => {
+  const getFCSetsData = () => {
     const ref = firebaseDb.ref(`flashCards/${getDataLS("userId")}/sets`);
     ref.once("value").then((snapshot) => {
       const dataArray: {
@@ -62,7 +41,57 @@ const FlashCardsListPage = () => {
       }
       setFCData(dataArray);
     });
+  };
+
+  const renderFCSetListItem = (
+    data: {
+      key: string;
+      value: {
+        EXFCSetName: string;
+        EXFCSetSubjects: string;
+        EXFCSetDescription: string;
+      };
+    }[],
+    deleteFCSetsHandler: (
+      FCSetId: string,
+      setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    ) => void,
+  ) => {
+    return data.map((val) => {
+      return (
+        <FCSetListItem
+          key={val.key}
+          FCSetId={val.key}
+          FCSetTitle={val.value.EXFCSetName}
+          deleteFCSetsHandler={deleteFCSetsHandler}
+        />
+      );
+    });
+  };
+
+  useEffect(() => {
+    getFCSetsData();
   }, []);
+
+  const deleteFCSetsHandler = (
+    FCSetId: string,
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+    setIsLoading(true);
+    const ref = firebaseDb.ref(
+      `flashCards/${getDataLS("userId")}/sets/${FCSetId}`,
+    );
+    ref
+      .remove()
+      .then(() => {
+        setIsLoading(false);
+        getFCSetsData();
+      })
+      .catch((err) => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <Layout>
       <div className="FCList_wrapper">
@@ -77,7 +106,7 @@ const FlashCardsListPage = () => {
                   <Link to="/create-basic-fc">Create Basic FC</Link>
                 </p>
               ) : (
-                renderFCSetListItem(FCData)
+                renderFCSetListItem(FCData, deleteFCSetsHandler)
               )}
             </>
           ) : (

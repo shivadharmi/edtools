@@ -3,7 +3,6 @@ import Form from "../../components/Form/Form";
 import Layout from "../../components/Layout/Layout";
 import "./SignUpPage.css";
 import { firebaseAuth, firebaseDb } from "../../utils/firebase";
-import { setAuthData } from "../../utils/auth";
 
 const onClickHandler = (
   formData: {
@@ -18,6 +17,7 @@ const onClickHandler = (
   firebaseAuth
     .createUserWithEmailAndPassword(formData.email, formData.password)
     .then((user) => {
+      firebaseAuth.currentUser?.sendEmailVerification();
       const userId = firebaseAuth.currentUser?.uid!;
       firebaseDb.ref(`users/${userId}`).set(
         {
@@ -29,8 +29,8 @@ const onClickHandler = (
             setIsLogging(false);
             errorHandler(err.message);
           } else {
-            setAuthData(userId);
-            window.location.pathname = "/list";
+            alert("verification link has been sent your email.");
+            window.location.pathname = "/";
             setIsLogging(false);
           }
         },

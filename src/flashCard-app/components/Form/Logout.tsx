@@ -18,7 +18,7 @@ const Logout = () => {
   };
   return (
     <Link to="#" onClick={logoutHandler}>
-      Logout
+      LOGOUT
     </Link>
   );
 };

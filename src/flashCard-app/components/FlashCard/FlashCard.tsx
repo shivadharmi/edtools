@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import Layout from "../Layout/Layout";
 import "./FlashCard.css";
 import "../../components/Form/Form.css";
-import { useParams } from "react-router-dom";
 import { firebaseDb } from "../../utils/firebase";
-import { getDataLS } from "../../utils/auth";
+import { getDataLS, removeDataLS } from "../../utils/auth";
 
 const FlashCard = () => {
   const [tab, setTab] = useState(1);
@@ -22,7 +21,7 @@ const FlashCard = () => {
   const [formData, setFormData] = useState(initialFormData);
   // const { id } = useParams<{ id: string }>();
   useEffect(() => {
-    if (getDataLS("link")) {
+    if (window.location.pathname !== "/create-basic-fc" && getDataLS("link")) {
       setFormData((prev) => {
         return {
           ...prev,
@@ -36,6 +35,7 @@ const FlashCard = () => {
       );
       window.location.pathname = "/";
     }
+    return () => removeDataLS("link");
   }, []);
 
   const [err, setError] = useState<null | string>(null);

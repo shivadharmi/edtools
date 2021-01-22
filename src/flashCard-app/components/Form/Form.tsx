@@ -119,14 +119,24 @@ const Form: React.FC<Props> = ({ onClick, isSignUp }) => {
           </div>
         ) : null}
         <div className="signup_info">
-          <span>
-            {isSignUp ? "Already have an account?" : "New to edtools ?"}{" "}
+          <p>
             {isSignUp ? (
-              <Link to={"/login"}>LOGIN</Link>
+              <>
+                Already have an account? <Link to={"/login"}>LOGIN</Link>
+              </>
             ) : (
-              <Link to="/signup">SIGN UP</Link>
+              <>
+                New to edtools ? <Link to="/signup">SIGN UP</Link>
+              </>
             )}
-          </span>
+          </p>
+          <p>
+            {isSignUp ? null : (
+              <>
+                forgot password ? <Link to="/reset-password">RESET</Link>
+              </>
+            )}
+          </p>
         </div>
         <button
           className="form_button"

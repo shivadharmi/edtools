@@ -54,17 +54,24 @@ select {
 }
 
 .signup_info {
+  text-align: center;
   margin: 10px auto;
 }
 
-.signup_info span {
+.signup_info p {
+  padding: 0 5px;
   font-size: smaller;
 }
 
-.signup_info span a {
+.signup_info p a {
+  text-decoration: none;
   padding-left: 5px;
   font-size: small;
   font-weight: 500;
+  color: #afb42b;
+}
+
+.signup_info p a:hover {
   color: #0373d3;
 }
 

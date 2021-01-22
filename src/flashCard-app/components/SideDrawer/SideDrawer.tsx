@@ -43,7 +43,7 @@ const SideDrawer: React.FC<Props> = ({ onClick }) => {
         ) : null}
 
         <li className="nav_item">
-          {isAuthenticated() ? <Logout /> : <Link to="/login">Login</Link>}
+          {isAuthenticated() ? <Logout /> : <Link to="/login">LOGIN</Link>}
         </li>
       </ul>
     </nav>
