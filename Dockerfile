@@ -10,7 +10,7 @@ ARG NODE_ENV=production
 COPY . .
 RUN npm run build:app:docker
 
-FROM nginx:1.17-alpine
+FROM nginx:1.27-alpine
 
 COPY --from=build /opt/node_app/build /usr/share/nginx/html
 
