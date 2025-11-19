@@ -57,7 +57,7 @@
   "devDependencies": {
     "@types/aws-sdk": "2.7.0",
     "@types/lodash.throttle": "4.1.6",
-    "@types/pako": "1.0.1",
+    "@types/pako": "1.0.7",
     "@types/randomstring": "1.1.6",
     "@types/react-router-dom": "5.1.7",
     "eslint-config-prettier": "7.1.0",
