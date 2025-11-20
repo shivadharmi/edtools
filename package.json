@@ -42,7 +42,7 @@
     "png-chunk-text": "1.0.0",
     "png-chunks-encode": "1.0.0",
     "png-chunks-extract": "1.0.0",
-    "points-on-curve": "0.2.0",
+    "points-on-curve": "1.0.1",
     "pwacompat": "2.0.17",
     "query-string": "6.13.8",
     "randomstring": "1.1.5",
